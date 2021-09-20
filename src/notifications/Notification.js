@@ -26,6 +26,8 @@ const Notification = (props) => {
 
     return (
         <div
+            onMouseEnter={handlePauseTimer}
+            onMouseLeave={handleStartTimer}
             className={`notification-item ${
                 props.type === 'SUCCESS' ? 'success' : 'error'
             } `}
