@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import NotificationProvider from './notifications/NotificationProvider';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <NotificationProvider>
+            <App />
+        </NotificationProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
  
