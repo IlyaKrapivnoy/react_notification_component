@@ -9,6 +9,11 @@ const NotificationProvider = (props) => {
             type: 'SUCCESS',
             message: 'Hell yeah!',
         },
+        {
+            id: v4(),
+            type: 'SUCCESS',
+            message: 'Hell yeah 2!',
+        },
     ];
     console.log(notifications);
 
