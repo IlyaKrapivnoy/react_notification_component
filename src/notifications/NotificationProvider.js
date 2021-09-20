@@ -16,7 +16,7 @@ const NotificationProvider = (props) => {
         <div>
             <div className='notification-wrapper'>
                 {notifications.map((note) => {
-                    return <Notification {...note} />;
+                    return <Notification key={note.id} {...note} />;
                 })}
             </div>
             {props.children}

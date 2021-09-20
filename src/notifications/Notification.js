@@ -4,7 +4,7 @@ const Notification = (props) => {
     return (
         <div className='notification-item'>
             <p>{props.message}</p>
-            <div className='bar'></div>;
+            <div className='bar'></div>
         </div>
     );
 };
