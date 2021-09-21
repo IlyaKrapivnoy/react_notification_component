@@ -11,6 +11,8 @@ const Notification = (props) => {
                 if (prev < 100) {
                     return prev + 0.5;
                 }
+                clearInterval(id);
+
                 return prev;
             });
         }, 20);
@@ -24,9 +26,15 @@ const Notification = (props) => {
     const handleCloseNotification = () => {
         handlePauseTimer();
         setExit(true);
-        setTimeout(() => {}, 400);
+        setTimeout(() => {
+            props.dispatch({
+                type: 'REMOVE_NOTIFICATION',
+                id: props.id,
+            });
+        }, 400);
     };
-
+    
+    
     useEffect(() => {
         if (width === 100) {
             //close notification
