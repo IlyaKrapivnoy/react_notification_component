@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const Notification = (props) => {
+    const [exit, setExit] = useState(false);
     const [width, setWidth] = useState(0);
     const [intervalID, setIntervalID] = useState(null);
 
@@ -30,9 +31,10 @@ const Notification = (props) => {
             onMouseLeave={handleStartTimer}
             className={`notification-item ${
                 props.type === 'SUCCESS' ? 'success' : 'error'
-            } `}
+            } ${exit ? 'exit' : ''}`}
         >
             <p>{props.message}</p>
+            <button onClick={() => setExit(true)}>X</button>
             <div className='bar' style={{ width: `${width}%` }}></div>
         </div>
     );
