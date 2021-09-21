@@ -1,6 +1,8 @@
-import React, { useReducer } from 'react';
+import React, { createContext, useReducer } from 'react';
 import { v4 } from 'uuid';
 import Notification from './Notification';
+
+export const NotificationContext = createContext();
 
 const NotificationProvider = (props) => {
     const [state, dispatch] = useReducer(
@@ -38,7 +40,7 @@ const NotificationProvider = (props) => {
     // });
 
     return (
-        <div>
+        <NotificationContext.Provider value={dispatch}>
             <div className='notification-wrapper'>
                 {state.map((note) => {
                     return (
@@ -51,7 +53,7 @@ const NotificationProvider = (props) => {
                 })}
             </div>
             {props.children}
-        </div>
+        </NotificationContext.Provider>
     );
 };
 
