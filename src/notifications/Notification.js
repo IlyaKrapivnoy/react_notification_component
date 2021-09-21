@@ -21,6 +21,19 @@ const Notification = (props) => {
         clearInterval(intervalID);
     };
 
+    const handleCloseNotification = () => {
+        handlePauseTimer();
+        setExit(true);
+        setTimeout(() => {}, 400);
+    };
+
+    useEffect(() => {
+        if (width === 100) {
+            //close notification
+            handleCloseNotification();
+        }
+    }, [width]);
+
     useEffect(() => {
         handleStartTimer();
     }, []);
@@ -34,7 +47,6 @@ const Notification = (props) => {
             } ${exit ? 'exit' : ''}`}
         >
             <p>{props.message}</p>
-            <button onClick={() => setExit(true)}>X</button>
             <div className='bar' style={{ width: `${width}%` }}></div>
         </div>
     );
