@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import './App.css';
 import { NotificationContext } from './notifications/NotificationProvider';
 import { v4 } from 'uuid';
@@ -8,16 +8,16 @@ function App() {
     const [inputVal, setInputVal] = useState('');
     const dispatch = useContext(NotificationContext);
 
-    useEffect(() => {
+    const handleNewNotification = () => {
         dispatch({
             type: 'ADD_NOTIFICATION',
             payload: {
                 id: v4(),
                 type: 'SUCCESS',
-                message: 'Hello, I am a new notification!',
+                message: inputVal,
             },
         });
-    });
+    };
 
     console.log('contextValue', dispatch);
     return (
@@ -27,6 +27,7 @@ function App() {
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
             />
+            <button onClick={handleNewNotification}>Add Notification</button>
         </div>
     );
 }
