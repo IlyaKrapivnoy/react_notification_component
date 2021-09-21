@@ -2,8 +2,10 @@ import { useContext, useEffect } from 'react';
 import './App.css';
 import { NotificationContext } from './notifications/NotificationProvider';
 import { v4 } from 'uuid';
+import { useState } from 'react/cjs/react.development';
 
 function App() {
+    const [inputVal, setInputVal] = useState('');
     const dispatch = useContext(NotificationContext);
 
     useEffect(() => {
@@ -18,7 +20,15 @@ function App() {
     });
 
     console.log('contextValue', dispatch);
-    return <div className=''></div>;
+    return (
+        <div className=''>
+            <input
+                type='text'
+                value={inputVal}
+                onChange={(e) => setInputVal(e.target.value)}
+            />
+        </div>
+    );
 }
 
 export default App;
