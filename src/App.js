@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import { useContext } from 'react';
 import './App.css';
+import { NotificationContext } from './notifications/NotificationProvider';
+import { v4 } from 'uuid';
+import { useState } from 'react/cjs/react.development';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [inputVal, setInputVal] = useState('');
+    const dispatch = useContext(NotificationContext);
+
+    const handleNewNotification = () => {
+        dispatch({
+            type: 'ADD_NOTIFICATION',
+            payload: {
+                id: v4(),
+                type: 'SUCCESS',
+                message: inputVal,
+            },
+        });
+    };
+
+    console.log('contextValue', dispatch);
+    return (
+        <div className=''>
+            <input
+                type='text'
+                value={inputVal}
+                onChange={(e) => setInputVal(e.target.value)}
+            />
+            <button onClick={handleNewNotification}>Add Notification</button>
+        </div>
+    );
 }
 
 export default App;
